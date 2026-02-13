@@ -90,6 +90,7 @@ def task_detail(request, task_id):
     else:
         try:
             form = TaskForm(request.POST, instance=task)
+            print(form.errors)
             edit_task = form.save(commit=False)
             edit_task.user = request.user
             edit_task.datecompleted = None
