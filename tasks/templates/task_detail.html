@@ -6,10 +6,7 @@
       <h1 class="text-secondary">{{ task.title }}</h1>
       {{ error }} {{ form.as_p }}
       <div class="d-flex justify-content-around">
-        <form
-          action="{% url 'task_detail' task.id %}"
-          method="post"
-        >
+        <form method="post">
           {% csrf_token %}
           <button class="btn btn-primary">Update</button>
         </form>

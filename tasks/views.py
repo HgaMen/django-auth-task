@@ -89,9 +89,11 @@ def task_detail(request, task_id):
             })
     else:
         try:
-            task = get_object_or_404(Task, pk=task_id, user=request.user)
             form = TaskForm(request.POST, instance=task)
-            form.save()
+            edit_task = form.save(commit=False)
+            edit_task.user = request.user
+            edit_task.save()
+            return redirect('tasks')
         except ValueError:
             return render(request, 'task_detail.html', {
                 'task': task,
