@@ -89,10 +89,10 @@ def task_detail(request, task_id):
             })
     else:
         try:
-            
             form = TaskForm(request.POST, instance=task)
             edit_task = form.save(commit=False)
             edit_task.user = request.user
+            edit_task.datecompleted = None
             edit_task.save()
             return redirect('tasks')
         except ValueError:
