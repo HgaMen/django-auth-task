@@ -1,38 +1,39 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}
+{% block content %}
 
 <main class="container">
   <div class="row">
     <div class="col-md-4 offset-md-4">
+      
       <h1 class="text-secondary">{{ task.title }}</h1>
-      {{ error }}  
+
+      <!-- FORMULARIO UPDATE -->
       <form method="post">
-      {% csrf_token %} {{{ form.as_p }}
-      <div class="d-flex justify-content-around">
-          
-          <button
-            class="btn btn-primary"
-            type="submit"
-          >
+        {% csrf_token %}
+
+        {{ error }}
+        {{ form.as_p }}
+
+        <div class="d-flex justify-content-around mt-3">
+          <button class="btn btn-primary" type="submit">
             Update
           </button>
-        <!-- </form> -->
+      </form>
 
-        <!-- <form -->
-          action="{% url 'complete_task' task.id %}"
-          method="post"
-        >
-          {% csrf_token %}
-          <button class="btn btn-secondary">Complete</button>
-        <!-- </form> -->
+          <!-- FORM COMPLETE -->
+          <form action="{% url 'complete_task' task.id %}" method="post">
+            {% csrf_token %}
+            <button class="btn btn-secondary">Complete</button>
+          </form>
 
-        <!-- <form -->
-          action="{% url 'delete_task' task.id %}"
-          method="post"
-        >
-          {% csrf_token %}
-          <button class="btn btn-danger">Delete</button>
-        </form>
-      </div>
+          <!-- FORM DELETE -->
+          <form action="{% url 'delete_task' task.id %}" method="post">
+            {% csrf_token %}
+            <button class="btn btn-danger">Delete</button>
+          </form>
+
+        </div>
+
     </div>
   </div>
 </main>
